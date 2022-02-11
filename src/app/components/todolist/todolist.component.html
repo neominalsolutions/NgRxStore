@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let item of todos">
+    {{ item.title }} {{ item.completed }}
+
+    <button (click)="delete(item.id)">x</button>
+    <button (click)="edit(item.id)">edit</button>
+  </li>
+</ul>

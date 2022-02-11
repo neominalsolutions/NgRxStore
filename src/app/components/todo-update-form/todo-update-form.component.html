@@ -1,0 +1,11 @@
+<form method="Post" (submit)="save($event)">
+  <input #titleInput [value]="todo.title" type="text" placeholder="Title" />
+  <input
+    #completedInput
+    [checked]="todo.completed"
+    type="checkbox"
+    placeholder="Completed"
+  />
+  IsCompleted
+  <input type="submit" value="Update" />
+</form>
