@@ -3,6 +3,7 @@ import { TodoState } from './todo.state';
 import { Todo } from './todo';
 
 import { load, add, remove, edit, select, update } from './todos.action';
+import { state } from '@angular/animations';
 
 export const initialState: TodoState = {
   todos: [],
@@ -27,10 +28,7 @@ const _todoReducer = createReducer(
     ...state,
     todos: [...state.todos.filter((x) => x.id != todoId)],
   })),
-  on(edit, (state, { todoId }) => ({
-    ...state,
-    selectedTodo: { ...state.todos.find((x) => x.id == todoId) } as Todo,
-  })),
+  on(edit,  (state, { todoId }) => editFunc(state,todoId)),
   on(select, (state, { todoId }) => ({
     ...state,
     selectedTodo:
@@ -49,6 +47,17 @@ const _todoReducer = createReducer(
     };
   })
 );
+
+
+function  editFunc(state:any, todoId:number):TodoState{
+ 
+  return {
+    ...state,
+    selectedTodo: { ...state.todos.find((x:any) => x.id == todoId) } as Todo,
+  }
+    
+}
+
 
 export function TodoReducer(state: any, action: any) {
   return _todoReducer(state, action);
